@@ -1,37 +1,31 @@
 package Model;
 
-public class Circle {
-    protected Point point1;
-    protected Point point2;
+public class Circle extends Shape {
+    private Point point1;
+    private Point point2;
     private double radius;
-    private double circumference;
-    private double surface;
 
-
-    public Circle(Point point1, Point point2) {
-        this.point1 = point1;
-        this.point2 = point2;
+    public Circle(double x1, double y1, double x2, double y2) {
+        this.point1 = new Point(x1, y1);
+        this.point2 = new Point(x2, y2);
+        calculateRadius();
     }
 
-    public double getRadius() {
-        return radius;
-    }
-    public double getCircumference() {
-        return circumference;
-    }
-    public double getSurface() {
-        return surface;
+    public Circle(double radius) {
+        this.radius = radius;
     }
 
     public void calculateRadius() {
         radius = Math.sqrt(Math.pow(point1.getY() - point1.getX(), 2) + Math.pow(point2.getY() - point1.getX(), 2));
     }
 
-    public void calculateCircumference() {
-        circumference = 2 * Math.PI * radius;
+    @Override
+    public double calculateCircumference() {
+        return 2 * Math.PI * radius;
     }
 
-    public void calculateSurface() {
-        surface = Math.PI * Math.pow(radius, 2);
+    @Override
+    public double calculateSurface() {
+        return Math.PI * Math.pow(radius, 2);
     }
 }
